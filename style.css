@@ -1,0 +1,19 @@
+body{
+    background-image: linear-gradient(to-right,red,black);
+}
+.foot{
+    position: fixed;  
+    left: 10px;  
+    bottom: 5px;  
+    right: 10px;   
+    width: 400px;  
+    background-color: gray;  
+    color: white;  
+}
+canvas{
+    border: 5px solid white;
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px red;
+    margin-top: 40px;
+
+}
