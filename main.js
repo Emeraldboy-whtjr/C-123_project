@@ -1,7 +1,9 @@
 
 rightwristX = 0;
+rightwristY = 0;
 leftwristX = 0;
-distance = 0;
+leftwristY = 0;
+distance = 30;
 
 
 function setup(){
@@ -13,7 +15,7 @@ function setup(){
     video.position(400,400);
 
     posenet = ml5.poseNet(video,modelLoaded);
-    posnet.on("pose",gotposes);
+    posenet.on('pose',gotposes);
 }
 
 function modelLoaded(){
@@ -23,13 +25,20 @@ function modelLoaded(){
 
 function gotposes(results){
 
-    if(results){
+    if(results.length > 0){
         console.log(results);
 
         rightwristX = results[0].pose.rightWrist.x;
         leftwristX = results[0].pose.leftWrist.x;
 
-        distance = floor(rightwristX - leftwristX);
+        rightwristY = results[0].pose.rightWrist.y;
+        leftwristY = results[0].pose.leftWrist.y;
+
+        distance = floor(leftwristX - rightwristX);
+        console.log(distance);
+
+        fill("red");
+        circle(rightwristX,rightwristY,10);
     }
     
 }
@@ -37,6 +46,6 @@ function gotposes(results){
 function draw(){
     background("#03fcd7");
     textSize(distance);//for setting the text size
-    fill("#7703fc");
+    //stroke("#7703fc");
     text("Aayush Roy",100,100);//for displaying text on the canvas
 }
